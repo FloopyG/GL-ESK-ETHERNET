@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2023 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under Ultimate Liberty license
@@ -254,8 +254,8 @@ static void low_level_init(struct netif *netif)
   MACAddr[1] = 0x55;
   MACAddr[2] = 0x03;
   MACAddr[3] = 0x00;
-  MACAddr[4] = 0x44;
-  MACAddr[5] = 0x12;
+  MACAddr[4] = 0x11;
+  MACAddr[5] = 0x22;
   heth.Init.MACAddr = &MACAddr[0];
   heth.Init.RxMode = ETH_RXINTERRUPT_MODE;
   heth.Init.ChecksumMode = ETH_CHECKSUM_BY_HARDWARE;
