@@ -73,6 +73,7 @@ void StartUdpServerTask(void const * argument)
 
 	  int nbytes;
 	  const size_t buf_len=256;
+	  size_t buf_cmd_len = 0;
 	  char buffer[buf_len];
 		for (uint32_t i=0; i<buf_len; i++)
 			{buffer[i]='0';}
@@ -82,7 +83,8 @@ void StartUdpServerTask(void const * argument)
 	  while ( (nbytes = recvfrom(socket_fd, buffer, (size_t)sizeof(buffer),
 			  0, (struct sockaddr *)&client_addr, (socklen_t*)&addrlen)) > 0 )
 	  {
-		 buffer[strcspn(buffer, "\n")] = '\0';
+		 buf_cmd_len = strlen(buffer);
+		 buffer[buf_cmd_len] = '\0';
 		 char* parts[2];
 		 uint8_t part_index = 0;
 		 parts[part_index] = strtok((char*) buffer, " ");
