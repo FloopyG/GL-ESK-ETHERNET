@@ -13,7 +13,6 @@
 #include <string.h>
 
 #define PORTNUM 5678UL
-#define VERSION "udp_server_Nazar_Ohoniuk_11042023\n"
 
 #if (USE_UDP_SERVER_PRINTF == 1)
 #include <stdio.h>
@@ -102,7 +101,7 @@ void StartUdpServerTask(void const * argument)
 
 		else if (strcmp(parts[0], "sversion") == 0)
 		{
-			sendto(socket_fd, VERSION, strlen(VERSION), 0, (const struct sockaddr*)&client_addr, addrlen);
+			sendto(socket_fd, "udp_srv_Nazar_Ohoniuk_11042023\r\n", strlen("udp_srv_Nazar_Ohoniuk_11042023\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
 			sendto(socket_fd, "OK\n", strlen("OK\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
 			clear_buffer(buffer, buf_len);
 		    continue;
@@ -141,6 +140,12 @@ void StartUdpServerTask(void const * argument)
 				clear_buffer(buffer, buf_len);
 				continue;
 			}
+
+			else
+			{
+				sendto(socket_fd, "ERROR\r\n", strlen("ERROR\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
+				clear_buffer(buffer, buf_len);
+			}
 		}
 
 		else if (strcmp(parts[1], "off") == 0)
@@ -176,6 +181,12 @@ void StartUdpServerTask(void const * argument)
 				clear_buffer(buffer, buf_len);
 				continue;
 			}
+
+			else
+			{
+				sendto(socket_fd, "ERROR\r\n", strlen("ERROR\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
+				clear_buffer(buffer, buf_len);
+			}
 		}
 
 		else if (strcmp(parts[1], "toggle") == 0)
@@ -210,6 +221,12 @@ void StartUdpServerTask(void const * argument)
 				sendto(socket_fd, "OK\r\n", strlen("OK\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
 				clear_buffer(buffer, buf_len);
 				continue;
+			}
+
+			else
+			{
+				sendto(socket_fd, "ERROR\r\n", strlen("ERROR\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
+				clear_buffer(buffer, buf_len);
 			}
 		}
 
@@ -281,6 +298,12 @@ void StartUdpServerTask(void const * argument)
 				}
 				clear_buffer(buffer, buf_len);
 				continue;
+			}
+
+			else
+			{
+				sendto(socket_fd, "ERROR\r\n", strlen("ERROR\r\n"), 0, (const struct sockaddr*)&client_addr, addrlen);
+				clear_buffer(buffer, buf_len);
 			}
 		}
 
